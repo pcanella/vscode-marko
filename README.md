@@ -5,6 +5,10 @@ Simply a port of https://github.com/merwan7/sublime-marko to VSCode. Enjoy.
 
 Installation instructions:
 
+* Open VS Code
+* Open command panel with `⌘ + P` (Mac) or `F1` (Windows)
+* Type ext install marko and it should come right up. 
+* Not working? patrick.canella@gmail.com and harass me!
 
 
 ### For more information
