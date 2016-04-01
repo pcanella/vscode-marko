@@ -7,9 +7,11 @@ Installation instructions:
 
 * Open VS Code
 * Open command panel with `⌘ + P` (Mac) or `F1` (Windows)
-* Type `ext install marko` and it should come right up. 
+* Type `ext install marko` and it should come right up.
 * Not working? patrick.canella@gmail.com and harass me!
 
+### Original source code
+https://github.com/pcanella/vscode-marko
 
 ### For more information
 * [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
