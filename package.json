@@ -1,0 +1,26 @@
+{
+    "name": "marko",
+    "displayName": "Marko Syntax Highlighting",
+    "description": "Marko syntax highlighting",
+    "version": "0.0.1",
+    "publisher": "pcanella",
+    "engines": {
+        "vscode": "^0.10.10"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "marko",
+            "aliases": ["Marko", "marko"],
+            "extensions": [".marko"],
+            "configuration": "./marko.configuration.json"
+        }],
+        "grammars": [{
+            "language": "marko",
+            "scopeName": "text.marko",
+            "path": "./syntaxes/marko.tmLanguage"
+        }]
+    }
+}
