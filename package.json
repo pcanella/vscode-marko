@@ -1,26 +1,36 @@
 {
     "name": "marko",
     "displayName": "Marko Syntax Highlighting",
-    "description": "Marko syntax highlighting",
-    "version": "0.0.1",
+    "description": "Syntax highlighting for Marko templates. Not sure what Marko is? Check out markojs.com for more info! Special thanks to https://github.com/merwan7 for creating the sublime originals!",
+    "version": "0.1.0",
     "publisher": "pcanella",
     "engines": {
         "vscode": "^0.10.10"
     },
+    "icon": "images/marko.png",
     "categories": [
         "Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "marko",
-            "aliases": ["Marko", "marko"],
-            "extensions": [".marko"],
-            "configuration": "./marko.configuration.json"
-        }],
-        "grammars": [{
-            "language": "marko",
-            "scopeName": "text.marko",
-            "path": "./syntaxes/marko.tmLanguage"
-        }]
+        "languages": [
+            {
+                "id": "marko",
+                "aliases": [
+                    "Marko",
+                    "marko"
+                ],
+                "extensions": [
+                    ".marko"
+                ],
+                "configuration": "./marko.configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "marko",
+                "scopeName": "text.marko",
+                "path": "./syntaxes/marko.tmLanguage"
+            }
+        ]
     }
 }
