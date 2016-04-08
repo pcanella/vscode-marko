@@ -1,0 +1,127 @@
+{
+        "for element": {
+             "prefix": "for",
+             "body": ["<for each=\"${1:item} in ${2:items}\">$3</for>"],
+             "description": "for element"
+        },
+        "for attribute": {
+             "prefix": "foratt",
+             "body": ["for\"${1:item} in ${2:items}\"" ],
+             "description": "for attribute"
+        },
+        "attrs attribute": {
+             "prefix": "attrs",
+             "body": ["attrs=\"${1:expr}\"" ],
+             "description": "attrs attribute"
+        },
+        "if element": {
+             "prefix": "if",
+             "body": ["<if test=\"${1:condition}\">$2</if>" ],
+             "description": "if element"
+        },
+        "if attribute": {
+             "prefix": "ifatt",
+             "body": ["if=\"${1:condition}\"" ],
+             "description": "if attribute"
+        },
+        "else-if element": {
+             "prefix": "else-if",
+             "body": ["<else-if test=\"${1:condition}\">$2</else-if>" ],
+             "description": "else-if element"
+        },
+        "else-if attribute": {
+             "prefix": "else-ifatt",
+             "body": ["else-if=\"${1:condition}\"" ],
+             "description": "else-if attribute"
+        },
+        "else element": {
+             "prefix": "else",
+             "body": ["<else>$1</else>" ],
+             "description": "else element"
+        },
+        "var element": {
+             "prefix": "var",
+             "body": ["<var name=\"${1:name}\" value=\"$2\"/>" ],
+             "description": "var element"
+        },
+        "assign element": {
+             "prefix": "assign",
+             "body": ["<assign var=\"${1:var}\" value=\"$2\"/>" ],
+             "description": "assign element"
+        },
+        "require element": {
+             "prefix": "require",
+             "body": ["<require module=\"${1:module}\" var=\"$2\"/>" ],
+             "description": "require element"
+        },
+        "optimizer-page element": {
+             "prefix": "op",
+             "body": ["<optimizer-page package-path=\"${1:./optimizer.json}\"/>" ],
+             "description": "optimizer-page element"
+        },
+        "optimizer-head element": {
+             "prefix": "oh",
+             "body": ["<optimizer-head />" ],
+             "description": "optimizer-head element"
+        },
+        "optimizer-body element": {
+             "prefix": "ob",
+             "body": ["<optimizer-body />" ],
+             "description": "optimizer-body element"
+        },
+        "layout-use element": {
+             "prefix": "use",
+             "body": ["<layout-use template=\"${1:./path/to/template.marko}\">\n    <layout-put into=\"${2:target}\">\n        ${3:content}\n    </layout-put>\n</layout-use>" ],
+             "description": "layout-use element"
+        },
+        "layout-placeholder element": {
+             "prefix": "placeholder",
+             "body": ["<layout-placeholder name=\"${1:name}\"/>" ],
+             "description": "layout-placeholder element"
+        },
+        "layout-put element": {
+             "prefix": "put",
+             "body": ["<layout-put into \"${1:name}\" />" ],
+             "description": "layout-put element"
+        },
+        "async-fragment element": {
+             "prefix": "async",
+             "body": ["<async-fragment data-provider=\"${1:data.myDataProvider}\" var=\"${2:varName}\">\n    ${3:}\n</async-fragment>" ],
+             "description": "async-fragment element"
+        },
+        "w-bind attribute": {
+             "prefix": "bind",
+             "body": ["w-bind=\"${1:./widget}\"" ],
+             "description": "w-bind attribute"
+        },
+        "include template element": {
+             "prefix": "include",
+             "body": ["<include template=\"${1:./path/to/template.marko}\"/>" ],
+             "description": "include template element"
+        },
+        "ternary operator": {
+             "prefix": "?",
+             "body": ["{${1:expression} ? ${2:trueTemplate} : ${3:falseTemplate}}" ],
+             "description": "ternary operator"
+        },
+        "def element": {
+             "prefix": "def",
+             "body": ["<def function=\"${1:name}(${2:params})\">\n    ${3:}\n</def>" ],
+             "description": "def element"
+        },
+        "invoke element": {
+             "prefix": "invoke",
+             "body": ["<invoke function=\"${1:name}\" ${2:arg1Name}=\"${3:arg1Value}\"/>" ],
+             "description": "invoke element"
+        },
+        "html-comment element": {
+             "prefix": "comment",
+             "body": ["<html-comment>$1</html-comment>" ],
+             "description": "html-comment element"
+        },
+        "see JSON": {
+            "prefix": "cjson",
+            "body": ["<pre>\${JSON.stringify(${1:object}, null, 2)}</pre>"],
+            "description": "Stringify an object in a pre tag"
+        }
+}
