@@ -31,6 +31,12 @@
                 "scopeName": "text.marko",
                 "path": "./syntaxes/marko.tmLanguage"
             }
+        ],
+        "snippets": [
+            {
+                "language": "marko",
+                "path": "./snippets/marko.json"
+            }
         ]
     }
 }
