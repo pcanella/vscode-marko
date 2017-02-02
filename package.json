@@ -2,7 +2,7 @@
     "name": "marko",
     "displayName": "Marko Syntax Highlighting",
     "description": "Syntax highlighting for Marko templates. Not sure what Marko is? Check out markojs.com for more info! Special thanks to https://github.com/merwan7 for creating the sublime originals!",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "publisher": "pcanella",
     "engines": {
         "vscode": "^0.10.10"
