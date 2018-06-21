@@ -40,6 +40,10 @@
 		</dict>
 		<dict>
 			<key>include</key>
+			<string>#comment-html-tag</string>
+		</dict>
+		<dict>
+			<key>include</key>
 			<string>#html-block-concise</string>
 		</dict>
 		<dict>
@@ -82,7 +86,7 @@
 			<key>applyEndPatternLast</key>
 			<integer>1</integer>
 			<key>begin</key>
-			<string>(?:\s+|[,])(?:(ref)|([a-zA-Z][a-zA-Z]*)|(data-[a-zA-Z-]*)|([_a-zA-Z0-9][a-zA-Z0-9:_.-]*))\s*([=])\s*</string>
+			<string>(?:\s+|[,])(?:(key)|([a-zA-Z][a-zA-Z]*)|([_a-zA-Z0-9][a-zA-Z0-9:_.-]*))\s*([=])\s*</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -101,11 +105,6 @@
 					<string>entity.other.attribute-name.html</string>
 				</dict>
 				<key>4</key>
-				<dict>
-					<key>name</key>
-					<string>support.function.marko-attribute</string>
-				</dict>
-				<key>5</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.separator.key-value.html</string>
@@ -126,7 +125,7 @@
 			<key>applyEndPatternLast</key>
 			<integer>1</integer>
 			<key>begin</key>
-			<string>(?:\s+|[,])(?:(ref)|([a-zA-Z][a-zA-Z]*)|(data-[a-zA-Z0-9-]*)|([_a-zA-Z0-9][a-zA-Z0-9:_.-]*))\s*([=])\s*</string>
+			<string>(?:\s+|[,])(?:(key)|([a-zA-Z][a-zA-Z]*)|([_a-zA-Z0-9][a-zA-Z0-9:_.-]*))\s*([=])\s*</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -145,11 +144,6 @@
 					<string>entity.other.attribute-name.html</string>
 				</dict>
 				<key>4</key>
-				<dict>
-					<key>name</key>
-					<string>support.function.marko-attribute</string>
-				</dict>
-				<key>5</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.separator.key-value.html</string>
@@ -214,7 +208,7 @@
 				<key>3</key>
 				<dict>
 					<key>name</key>
-					<string>support.function.marko-attribute</string>
+					<string>entity.other.attribute-name.html</string>
 				</dict>
 			</dict>
 			<key>match</key>
@@ -245,6 +239,67 @@
 				<dict>
 					<key>include</key>
 					<string>#comment-block</string>
+				</dict>
+			</array>
+		</dict>
+		<key>attr-special</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.marko-attribute</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>\s+(else)\b</string>
+		</dict>
+		<key>attr-spread-concise</key>
+		<dict>
+			<key>applyEndPatternLast</key>
+			<integer>1</integer>
+			<key>begin</key>
+			<string>(?:\s+|[,])(\.\.\.)\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.key-value.html</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?=([,;]|\s|$))</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#expression</string>
+				</dict>
+			</array>
+		</dict>
+		<key>attr-spread-html</key>
+		<dict>
+			<key>applyEndPatternLast</key>
+			<integer>1</integer>
+			<key>begin</key>
+			<string>(?:\s+|[,])(\.\.\.)\s*</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.separator.key-value.html</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?=[,;]|\s|/&gt;|&gt;)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#expression-no-gt</string>
 				</dict>
 			</array>
 		</dict>
@@ -289,6 +344,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#attr-spread-concise</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#attr-no-value</string>
 				</dict>
 				<dict>
@@ -319,11 +378,19 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#attr-special</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#attr-with-arg</string>
 				</dict>
 				<dict>
 					<key>include</key>
 					<string>#attr-assignment-html</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#attr-spread-html</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -484,6 +551,23 @@
 			</dict>
 			<key>end</key>
 			<string>--&gt;</string>
+			<key>name</key>
+			<string>comment.block.html</string>
+		</dict>
+		<key>comment-html-tag</key>
+		<dict>
+			<key>begin</key>
+			<string>\s*&lt;html-comment&gt;</string>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.html</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>&lt;/html-comment&gt;</string>
 			<key>name</key>
 			<string>comment.block.html</string>
 		</dict>
@@ -679,6 +763,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#expression-string-template</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#expression-group-parens</string>
 				</dict>
 				<dict>
@@ -712,6 +800,85 @@
 				<dict>
 					<key>include</key>
 					<string>#expression-operator-special</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[.]([\p{L}\p{Nl}$_][\p{L}\p{Nl}$\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{200C}\x{200D}]*)\b</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\b(out)[.](global)\b</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>variable.language.js</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\b(this)[.](input|state)\b</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(input|state|component|JSON|out)\b</string>
+					<key>name</key>
+					<string>entity.name.type</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(let|var|const)\b</string>
+					<key>name</key>
+					<string>storage.type.var.js</string>
+				</dict>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>entity.name.type</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>\b(require)[.](resolve)\b</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(console|JSON|event|window|setTimeout|setInterval|require)\b</string>
+					<key>name</key>
+					<string>entity.name.type</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\b(this|arguments)\b</string>
+					<key>name</key>
+					<string>variable.language.js</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -856,7 +1023,7 @@
 		<key>expression-hex</key>
 		<dict>
 			<key>match</key>
-			<string>\b0[xX]\h+\b</string>
+			<string>\b0[xX][0-9A-Fa-f]+\b</string>
 			<key>name</key>
 			<string>constant.numeric.hex.js</string>
 		</dict>
@@ -918,9 +1085,9 @@
 		<key>expression-operator-special</key>
 		<dict>
 			<key>match</key>
-			<string>(?&lt;!\.|\$)\b(delete|in|instanceof|new|typeof\s*|void|with)\b(?!\$)</string>
+			<string>(?&lt;!\.|\$)\b(delete|in|instanceof|new|typeof\s*|void|with|from|to|step)\b(?!\$)</string>
 			<key>name</key>
-			<string>keyword.operator.js</string>
+			<string>keyword</string>
 		</dict>
 		<key>expression-operator-unary</key>
 		<dict>
@@ -964,13 +1131,21 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>\\(x\h{2}|[0-2][0-7]{0,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)</string>
+					<string>\\(x[0-9A-Fa-f]{2}|[0-2][0-7]{0,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)</string>
 					<key>name</key>
 					<string>constant.character.escape.js</string>
 				</dict>
+			</array>
+		</dict>
+		<key>expression-string-escapes</key>
+		<dict>
+			<key>patterns</key>
+			<array>
 				<dict>
-					<key>include</key>
-					<string>#placeholder-patterns</string>
+					<key>match</key>
+					<string>\\(x[0-9A-Fa-f]{2}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)</string>
+					<key>name</key>
+					<string>constant.character.escape.js</string>
 				</dict>
 			</array>
 		</dict>
@@ -1001,14 +1176,82 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>match</key>
-					<string>\\(x\h{2}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)</string>
-					<key>name</key>
-					<string>constant.character.escape.js</string>
+					<key>include</key>
+					<string>#expression-string-escapes</string>
 				</dict>
 				<dict>
 					<key>include</key>
 					<string>#placeholder-patterns</string>
+				</dict>
+			</array>
+		</dict>
+		<key>expression-string-template</key>
+		<dict>
+			<key>begin</key>
+			<string>`</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.begin.js</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>`</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.string.end.js</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.quoted.other.template.js</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#expression-string-escapes</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>\$\{</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.embedded.begin.js</string>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.js</string>
+					<key>end</key>
+					<string>(\})</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.embedded.end.js</string>
+						</dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>source.js</string>
+						</dict>
+					</dict>
+					<key>name</key>
+					<string>meta.embedded.line.js</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#expression</string>
+						</dict>
+					</array>
 				</dict>
 			</array>
 		</dict>
@@ -1052,11 +1295,15 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#tag-html</string>
+					<string>#comment-html</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#comment-html</string>
+					<string>#comment-html-tag</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#tag-html</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1065,6 +1312,46 @@
 				<dict>
 					<key>include</key>
 					<string>#js-code-block</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#placeholder-patterns</string>
+				</dict>
+			</array>
+		</dict>
+		<key>html-line-block-concise</key>
+		<dict>
+			<key>applyEndPatternLast</key>
+			<integer>1</integer>
+			<key>begin</key>
+			<string>\s*([-][-]+)\n</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.operator.marko.blah</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(?!\2)|(\2\1)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#cdata</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comment-html</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comment-html-tag</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#tag-html</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1094,11 +1381,15 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#tag-html</string>
+					<string>#comment-html</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#comment-html</string>
+					<string>#comment-html-tag</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#tag-html</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1181,6 +1472,41 @@
 					</array>
 				</dict>
 				<dict>
+					<key>applyEndPatternLast</key>
+					<integer>1</integer>
+					<key>begin</key>
+					<string>\[</string>
+					<key>beginCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.scope.begin.js</string>
+						</dict>
+					</dict>
+					<key>end</key>
+					<string>\]</string>
+					<key>endCaptures</key>
+					<dict>
+						<key>0</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.section.scope.end.js</string>
+						</dict>
+					</dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#js</string>
+						</dict>
+					</array>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>[.]([\p{L}\p{Nl}$_][\p{L}\p{Nl}$\p{Mn}\p{Mc}\p{Nd}\p{Pc}\x{200C}\x{200D}]*)\b</string>
+				</dict>
+				<dict>
 					<key>include</key>
 					<string>#expression</string>
 				</dict>
@@ -1189,12 +1515,6 @@
 					<string>\b(break|case|catch|continue|default|do|else|export|finally|for|if|return|switch|throw|try|while|with|import|from|await|async)\b</string>
 					<key>name</key>
 					<string>keyword.control.js</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(let|var)\b</string>
-					<key>name</key>
-					<string>storage.type.var.js</string>
 				</dict>
 				<dict>
 					<key>match</key>
@@ -1225,18 +1545,6 @@
 					<string>\bextends\b</string>
 					<key>name</key>
 					<string>entity.other.inherited-class.js</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(console|JSON)\b</string>
-					<key>name</key>
-					<string>entity.name.type</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\b(this|arguments)\b</string>
-					<key>name</key>
-					<string>variable.language.js</string>
 				</dict>
 				<dict>
 					<key>begin</key>
@@ -1320,6 +1628,10 @@
 				<dict>
 					<key>include</key>
 					<string>#comment-html</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#comment-html-tag</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1527,6 +1839,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#tag-name-dynamic-concise</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#tag-name-concise</string>
 				</dict>
 			</array>
@@ -1563,6 +1879,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#tag-name-dynamic-html</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#tag-name-html</string>
 				</dict>
 			</array>
@@ -1594,6 +1914,10 @@
 			<array>
 				<dict>
 					<key>include</key>
+					<string>#html-line-block-concise</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>#html-line-concise</string>
 				</dict>
 				<dict>
@@ -1607,7 +1931,7 @@
 			<key>applyEndPatternLast</key>
 			<integer>1</integer>
 			<key>begin</key>
-			<string>^\s*(for|if|unless|else-if|else|var|assign|macro|invoke|include|app|await|[a-zA-Z0-9_]+([:-])[a-zA-Z0-9_:-]*|[@][a-zA-Z0-9_]+)(?=(\s+(?![=])|$|[(]))</string>
+			<string>^\s*(for|if|unless|while|else-if|else|var|assign|macro|invoke|include|await|[a-zA-Z0-9_]+([:])[a-zA-Z0-9_:-]*|[@][a-zA-Z0-9_-]+)(?=(\s+(?![=])|$|[(]))</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -1635,7 +1959,7 @@
 		<key>tag-name-custom-html</key>
 		<dict>
 			<key>begin</key>
-			<string>(&lt;)(for|if|unless|else-if|else|var|assign|macro|invoke|include|app|await|[a-zA-Z0-9_]+[-:][a-zA-Z0-9\-_:]*|[@][a-zA-Z0-9_]+)(?=(&gt;|/&gt;|\s|\())</string>
+			<string>(&lt;)(for|if|unless|while|else-if|else|var|assign|macro|invoke|include|await|[a-zA-Z0-9_]+[:][a-zA-Z0-9\-_:]*|[@][a-zA-Z0-9_-]+)(?=(&gt;|/&gt;|\s|\())</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -1688,10 +2012,91 @@
 				</dict>
 			</array>
 		</dict>
+		<key>tag-name-dynamic-concise</key>
+		<dict>
+			<key>applyEndPatternLast</key>
+			<integer>1</integer>
+			<key>begin</key>
+			<string>^\s*(?=\$\{.*\})</string>
+			<key>comment</key>
+			<string>A concise custom tag name</string>
+			<key>end</key>
+			<string>(?=\n)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#placeholder</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#html-line-concise</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#attr-stuff-concise</string>
+				</dict>
+			</array>
+		</dict>
+		<key>tag-name-dynamic-html</key>
+		<dict>
+			<key>begin</key>
+			<string>(&lt;)(?=\$\{.*\})</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.begin.open.html</string>
+				</dict>
+			</dict>
+			<key>comment</key>
+			<string>The beginning of a regular HTML tag in non-concise mode</string>
+			<key>end</key>
+			<string>(&lt;/)(\2)?(&gt;)|(/&gt;)</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.begin.close.html</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.marko-tag.close.html</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.end.close.html</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.tag.end.self-close.html</string>
+				</dict>
+			</dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#placeholder</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#attr-stuff-html</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#open-tag-end</string>
+				</dict>
+			</array>
+		</dict>
 		<key>tag-name-html</key>
 		<dict>
 			<key>begin</key>
-			<string>(&lt;)([a-zA-Z0-9]+)(?=(&gt;|/&gt;|\s|\())</string>
+			<string>(&lt;)([a-zA-Z0-9-]+)(?=(&gt;|/&gt;|\s|\())</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -2034,11 +2439,11 @@
 		<key>tag-script-body-line</key>
 		<dict>
 			<key>begin</key>
-			<string>\s--\s</string>
+			<string>\s+-[-]+\s</string>
 			<key>comment</key>
 			<string>HTML script tag with nested JavaScript code</string>
 			<key>end</key>
-			<string>(?-$)</string>
+			<string>(?=\n)</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -2065,8 +2470,6 @@
 			<string>HTML script tag with nested JavaScript code</string>
 			<key>end</key>
 			<string>^(?!(\1\s)|\s*$)</string>
-			<key>name</key>
-			<string>meta.tag.other</string>
 			<key>patterns</key>
 			<array>
 				<dict>
