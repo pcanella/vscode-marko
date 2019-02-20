@@ -10,6 +10,15 @@ Installation instructions:
 * Type `ext install marko` and it should come right up.
 * Not working? patrick.canella@gmail.com and harass me!
 
+## Emmet Autocompletion
+You can also enable `emmet` style autocompletion by adding the following configuration to your vscode settings:
+
+```json
+"emmet.includeLanguages": {
+  "marko": "html"
+}
+```
+
 ### Original source code
 https://github.com/pcanella/vscode-marko
 

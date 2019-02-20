@@ -1,42 +1,46 @@
 {
-    "name": "marko",
-    "displayName": "Marko Syntax Highlighting",
-    "description": "Syntax highlighting for Marko templates. Not sure what Marko is? Check out markojs.com for more info! Special thanks to https://github.com/merwan7 for creating the sublime originals!",
-    "version": "0.2.0",
-    "publisher": "pcanella",
-    "engines": {
-        "vscode": "^0.10.10"
-    },
-    "icon": "images/marko.png",
-    "categories": [
-        "Languages"
+  "name": "marko",
+  "displayName": "Marko Syntax Highlighting",
+  "description": "Syntax highlighting for Marko templates. Not sure what Marko is? Check out markojs.com for more info! Special thanks to https://github.com/merwan7 for creating the sublime originals!",
+  "version": "0.2.0",
+  "publisher": "pcanella",
+  "engines": {
+    "vscode": "^0.10.10"
+  },
+  "icon": "images/marko.png",
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "marko",
+        "aliases": [
+          "Marko",
+          "marko"
+        ],
+        "extensions": [
+          ".marko"
+        ],
+        "configuration": "./marko.configuration.json"
+      }
     ],
-    "contributes": {
-        "languages": [
-            {
-                "id": "marko",
-                "aliases": [
-                    "Marko",
-                    "marko"
-                ],
-                "extensions": [
-                    ".marko"
-                ],
-                "configuration": "./marko.configuration.json"
-            }
-        ],
-        "grammars": [
-            {
-                "language": "marko",
-                "scopeName": "text.marko",
-                "path": "./syntaxes/marko.tmLanguage"
-            }
-        ],
-        "snippets": [
-            {
-                "language": "marko",
-                "path": "./snippets/marko.json"
-            }
-        ]
-    }
+    "grammars": [
+      {
+        "language": "marko",
+        "scopeName": "text.marko",
+        "path": "./syntaxes/marko.tmLanguage"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "marko",
+        "path": "./snippets/marko.json"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/pcanella/vscode-marko.git"
+  }
 }
